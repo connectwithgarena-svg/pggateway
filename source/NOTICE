@@ -1,0 +1,33 @@
+PayGate
+Copyright (C) 2026 Sourav / Phloraxx contributors
+
+This project is distributed under GNU AGPL-3.0-or-later. See LICENSE for the
+complete terms.
+
+Third-party components retain their respective licences. See go.mod,
+package.json and package-lock.json for the current dependency set.
+
+FFSHOP local adaptation — 2026-09-29
+Modified dashboard branding, icons, and copy for FFSHOP personal use.
+Removed the upstream Android app-link delegation pending a separately
+configured companion app. Original copyright and license notices retained.
+Fixed empty-profile/API-key responses in the dashboard settings.
+
+FFSHOP personal setup additions, 2026-09-29: native Android notification relay
+(in.ffshop.relay), dashboard QR creation and admin request endpoints, deployment
+templates and Hindi setup guide. Original copyright and AGPL notices retained.
+
+FFSHOP 1.1 additions, 2026-09-29: PhonePe Business, HDFC SmartHub Vyapar and
+BharatPe merchant notification routes, provider-specific matching, Android per-app
+opt-in, provider selection and updated hosting/setup documentation. Provider
+format tests are synthetic; no claim of live merchant certification.
+
+FFSHOP Cloudflare edition, 2026-09-30: Pages/D1 backend, merchant dashboard,
+public checkout, authenticated shop API, signed Android-compatible relay,
+transactional payment matching and scheduled webhook retries. Source and original
+license retained. Local synthetic verification is not live bank certification.
+
+FF Shop 1.5, 2026-09-30: charcoal/emerald workspace and privacy dashboard,
+five-provider capture including Google Pay Business, InboxStyle and malformed
+notification handling, separate signed APK application ID, webhook cancellation
+and inherited-callback re-consent, D1 provider migration and deployment checker.

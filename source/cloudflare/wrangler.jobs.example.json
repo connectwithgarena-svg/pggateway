@@ -1,0 +1,15 @@
+{
+  "name": "ffshop-maintenance",
+  "main": "src/jobs.ts",
+  "compatibility_date": "2026-09-29",
+  "workers_dev": false,
+  "triggers": { "crons": ["*/5 * * * *"] },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "ffshop",
+      "database_id": "YOUR-D1-UUID",
+      "migrations_dir": "migrations"
+    }
+  ]
+}
