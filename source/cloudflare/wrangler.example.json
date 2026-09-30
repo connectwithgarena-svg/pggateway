@@ -1,0 +1,14 @@
+{
+  "name": "YOUR-PAGES-PROJECT",
+  "pages_build_output_dir": "dist",
+  "compatibility_date": "2026-09-29",
+  "vars": { "PUBLIC_ORIGIN": "https://YOUR-PAGES-PROJECT.pages.dev" },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "ffshop",
+      "database_id": "YOUR-D1-UUID",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

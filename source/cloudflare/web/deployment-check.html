@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>FF Shop · Deployment check</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/deployment-check.js" defer></script>
+  </head>
+  <body>
+    <main class="page">
+      <div class="page-heading">
+        <div>
+          <div class="eyebrow">FF SHOP · SETUP</div>
+          <h1>Is your workspace ready?</h1>
+          <p>
+            This checker contacts only this site's own files and API. It never
+            requests your admin key.
+          </p>
+        </div>
+        <a class="button secondary" href="/">Open dashboard</a>
+      </div>
+      <section class="card">
+        <div class="card-head">
+          <h2>Deployment checks</h2>
+          <button id="check" type="button">Run again</button>
+        </div>
+        <div class="card-body">
+          <ul id="results">
+            <li>Checking this deployment…</li>
+          </ul>
+          <noscript
+            >Enable JavaScript to run checks. The upload instructions below
+            still work.</noscript
+          >
+        </div>
+      </section>
+      <section class="card">
+        <div class="card-head"><h2>Fix a 404 or incomplete upload</h2></div>
+        <div class="card-body">
+          <ol class="privacy-list">
+            <li>
+              Extract the final FF Shop ZIP. Upload only the inner
+              <strong>pages-upload.zip</strong> to your existing Cloudflare
+              Pages project's Production deployment.
+            </li>
+            <li>
+              The upload root must contain
+              <strong
+                >index.html, app.js, style.css, _worker.js, _routes.json</strong
+              >
+              and the other bundled files. Do not upload the outer ZIP, source
+              ZIP, or a parent folder.
+            </li>
+            <li>
+              Keep the D1 binding named <strong>DB</strong>, set
+              <strong>PUBLIC_ORIGIN</strong> to this exact HTTPS origin without
+              a trailing slash, and keep your private
+              <strong>ADMIN_KEY_HASH</strong> secret.
+            </li>
+            <li>
+              Back up your existing D1. Follow the included upgrade guide for
+              your current schema. Never run the fresh database file over
+              existing production data.
+            </li>
+            <li>
+              Deploy again after saving bindings, then rerun this checker.
+              Update the separate maintenance Worker and keep its five-minute
+              cron.
+            </li>
+          </ol>
+          <p>
+            Hindi: outer ZIP upload mat karo. Uske andar wala
+            <strong>pages-upload.zip</strong> upload karo. Existing database aur
+            admin key ko reset mat karo.
+          </p>
+          <p>
+            For a Git-integrated Pages project use its configured build or
+            Wrangler deployment instead of dashboard drag-and-drop.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

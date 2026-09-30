@@ -1,0 +1,12 @@
+# FFSHOP 1.6 payment logic
+
+1. Authenticated admin/shop creates an order on the default or a specified enabled business account. Removed/disabled accounts cannot receive new orders.
+2. D1 atomically reserves a unique payable amount of base +1–99 paise. All99 offsets share a global reservation pool for that base amount, across providers. Reservations last24h even for paid/cancelled orders; exhaustion returns409 amount_capacity. Existing larger-adjustment orders retain their original total. A new-insert database trigger also enforces the1–99 paise range. Retries with identical scope/idempotency key return the same order; changing amount/name/reference/account conflicts.
+3. Checkout shows exact total, snapshot of merchant UPI/name, QR and time window. Read-only status polling, opening UPI or scanning never confirms a payment.
+4. An opted-in merchant package on a paired phone supplies its standard or bounded custom-layout text, signed with device P-256 Keystore identity.
+5. Server validates device/epoch/signature/event identity/time/package, positive incoming text, exact amount, account and order window. Negative or ambiguous messages remain ignored. Complete collapsed text repeated inside expanded text is counted once; repeated monetary amounts within a receipt remain ambiguous.
+6. D1 commits payment state and webhook delivery atomically; duplicate evidence cannot enqueue duplicate fulfilment. Disabled accounts can still settle pre-existing orders. Removing/changing the destination is guarded while orders remain inside grace.
+7. Admin can confirm an actual credit from merchant history with exact amount, transaction reference and explicit verification. This is labeled manual, recorded in reviews, and follows the same atomic callback transition. Reference reuse within the provider is blocked. Cancelled or paid orders cannot be manually re-confirmed.
+8. Scheduled maintenance expires orders, retains reservations and retries callbacks. Shop must verify HMAC/event/amount and deduplicate before fulfilment.
+
+Signed phone text is not a bank-signed settlement receipt. Unknown formats remain unconfirmed. BharatPe custom lists use the strict baseline, timestamp, overlap and permanent row-fingerprint checks in PROVIDERS.md. First snapshots/refreshes/same-minute orders never suffice. Row claims, evidence, order transitions, callbacks and baseline compare-and-swap commit in one D1 transaction. Manual review requires actual merchant history.

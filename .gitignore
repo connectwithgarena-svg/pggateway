@@ -1,0 +1,16 @@
+node_modules/
+.gradle/
+build/
+dist/
+.wrangler/
+local.properties
+.dev.vars*
+.ffshop-admin.txt
+wrangler.json
+wrangler.jobs.json
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.key
+.env*

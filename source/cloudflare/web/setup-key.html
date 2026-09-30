@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="UTF-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>FFSHOP private admin key</title
+  ><style>
+    body {
+      font: 18px system-ui;
+      max-width: 720px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    button {
+      padding: 14px;
+      font: inherit;
+    }
+    pre {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      background: #eee;
+      padding: 15px;
+    }
+  </style>
+  <h1>Create your FFSHOP admin key</h1>
+  <p>
+    Open this file locally. It does not send anything to a server. Generate once
+    and save both values privately. There is no default password.
+  </p>
+  <button id="create">Generate a new key</button>
+  <h2>Admin key — save privately, use to log in</h2>
+  <pre id="key"></pre>
+  <h2>ADMIN_KEY_HASH — add to Cloudflare Pages settings</h2>
+  <pre id="hash"></pre>
+  <p>
+    Never upload this generated key to GitHub or put it in a public screenshot.
+  </p>
+  <script>
+    document.getElementById("create").onclick = async () => {
+      const hex = (b) =>
+        Array.from(new Uint8Array(b), (v) =>
+          v.toString(16).padStart(2, "0"),
+        ).join("");
+      const key = hex(crypto.getRandomValues(new Uint8Array(32)));
+      document.getElementById("key").textContent = key;
+      document.getElementById("hash").textContent = hex(
+        await crypto.subtle.digest("SHA-256", new TextEncoder().encode(key)),
+      );
+    };
+  </script>
+</html>

@@ -1,0 +1,28 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'in.ffshop.relay'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'in.ffshop.relay'
+        minSdk 26
+        targetSdk 35
+        versionCode 6
+        versionName '1.5.0'
+        manifestPlaceholders = [appLabel: 'FFSHOP Relay']
+    }
+    buildTypes {
+        // A separate install when the original APK's signing key is unavailable.
+        standalone {
+            initWith release
+            applicationIdSuffix '.standalone'
+            versionNameSuffix '-standalone'
+            manifestPlaceholders = [appLabel: 'FF Shop Relay']
+        }
+    }
+    testOptions { unitTests.includeAndroidResources = true }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+}
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.robolectric:robolectric:4.14.1'
+}
